@@ -18,14 +18,14 @@
     background:#000;
   }
   body::before {
-    content:"";
-    position:fixed;
-    inset:0;
-    background-image: url("https://drive.google.com/uc?export=view&id=19k-8GQfcC7svq3fTrSAmmsnBlGXSn9lI");
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.85);
-    z-index: -3;
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://drive.google.com/uc?export=view&id=19k-8GQfcC7svq3fTrSAmmsnBlGXSn9lI");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.85);
+  z-index: -3;
   }
 
   /* ชั้นแสงจันทร์สะท้อน */
@@ -144,7 +144,22 @@
   <div class="overlay"></div>
   <div class="moon-reflection"></div>
   <div class="ripple"></div>
+.wish-text {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 0 0 8px #000;
+  z-index: 5;
+  animation: fadeUp 5s ease-in-out forwards;
+}
 
+@keyframes fadeUp {
+  from { opacity: 0; transform: translate(-50%, -30%); }
+  to { opacity: 1; transform: translate(-50%, -60%); }
+}
   <div class="wrap">
     <header>
       <h1>ลอยกระทงออนไลน์ 🌕</h1>
@@ -163,6 +178,18 @@
   </div>
 
   <script>
+    document.getElementById("floatBtn").addEventListener("click", () => {
+  const wish = document.getElementById("wishInput").value.trim();
+  if (wish) {
+    const text = document.createElement("div");
+    text.className = "wish-text";
+    text.innerText = wish;
+    document.body.appendChild(text);
+
+    setTimeout(() => text.remove(), 7000);
+  }
+});
+
   (function(){
     const canvas = document.getElementById('c');
     const ctx = canvas.getContext('2d');
